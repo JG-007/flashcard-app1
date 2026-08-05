@@ -23,6 +23,14 @@
       margin-bottom: 20px;
     }
 
+    .hint-text {
+      color: #7f8c8d;
+      font-size: 0.9rem;
+      margin-top: -15px;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
     /* 3D Perspective Container */
     .card-container {
       perspective: 1000px;
@@ -147,6 +155,8 @@
 
   <h1>Flashcard Study</h1>
 
+  <p class="hint-text">💡 Tap the card to reveal the answer</p>
+
   <!-- Flashcard Container -->
   <div class="card-container" id="cardContainer">
     <div class="card" id="flashcard">
@@ -174,9 +184,9 @@
   <script>
     // Load existing cards from LocalStorage or use default array
     let flashcards = JSON.parse(localStorage.getItem('flashcards')) || [
-      { question: "Who is the best?", answer: "Alisha" },
-      { question: "What is Alisha cooking for dinner tonight?", answer: "Chicken curry" },
-      { question: "What is Alisha doing?", answer: "Cleaning" }
+      { question: "What is the capital of France?", answer: "Paris" },
+      { question: "What does HTML stand for?", answer: "HyperText Markup Language" },
+      { question: "Which CSS property changes text color?", answer: "color" }
     ];
 
     let currentIndex = 0;
@@ -244,7 +254,7 @@
         const j = Math.floor(Math.random() * (i + 1));
         [flashcards[i], flashcards[j]] = [flashcards[j], flashcards[i]];
       }
-      //saveCards();
+      saveCards();
       currentIndex = 0;
       renderCard();
     });
